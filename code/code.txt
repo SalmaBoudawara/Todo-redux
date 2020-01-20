@@ -1,0 +1,44 @@
+setDate=(event)=>{
+      let valueDate;
+  switch(event.target.value.length){
+    //input filed empty
+    case 0 :
+      valueDate= this.checkDate(event.target.value);
+      this.setState({date: event.target.value})
+      break;
+      
+      // value of month
+      case 2 :
+        valueDate= this.checkDate(event.target.value);
+        this.setState({date:valueDate})
+        break;
+   // value of year
+       case 4:
+          valueDate=  this.checkDate(event.target.value);
+          this.setState({date:valueDate})
+            break;
+  }
+    }
+    checkDate=(valueOfInput)=> {
+      let month=0;
+      let year=0;
+        if(Number(valueOfInput.slice(0,2))<=12 ){
+          month=valueOfInput.slice(0,2)+"/";
+      }
+      else {
+        month=valueOfInput.replace(valueOfInput,'••')+"/"
+      }
+       if( valueOfInput.length===2)
+       return month;
+      if(! isNaN(valueOfInput.slice(2,4)) ){
+        year=  valueOfInput.slice(2,4);
+        valueOfInput = month + year;
+      }
+    else {
+      year =valueOfInput.replace(valueOfInput,'••');
+      valueOfInput = month + year;
+
+    }
+    if( valueOfInput.length===5)
+    return valueOfInput;
+    }
